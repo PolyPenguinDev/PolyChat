@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyChat</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        @font-face {
+            font-family: 'Soehne Buch';
+            src: url('soehne-buch.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Soehne Halbfett';
+            src: url('soehne-halbfett.woff2') format('woff2');
+        }
+
+        ::placeholder {
+            color: #94959B;
+        }
+
+        body {
+            font-family: 'Soehne Buch', sans-serif;
+            font-size: 15px;
+            text-align: center;
+            background-color: #343541;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            font-family: inherit;
+            margin: 0;
+        }
+
+        #chat-container {
+            flex: 1;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        #input-container {
+            background-color: #343541;
+            margin: 0 auto;
+            overflow: hidden;
+            width: 100%;
+            max-width: 730px;
+            display: flex;
+            align-self: center;
+            align-items: center;
+            padding: 10px 13px;
+            border: 1px solid #555561;
+            border-radius: 15px;
+        }
+
+        #warning {
+            color: #B8B8C5;
+            font-size: 12px;
+            margin: 10px;
+        }
+
+        textarea {
+            max-height: 200px;
+            flex: 1;
+            overflow: hidden;
+            resize: none;
+            font-size: 15px;
+            padding: 0;
+            background-color: #343541;
+            font-family: inherit;
+            color: white;
+            border: none;
+            margin-right: 10px;
+        }
+
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+
+        button {
+            align-self: flex-end;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            height: 29px;
+            width: 29px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            border-radius: 7px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        button:hover {
+            border: 1px solid white;
+            background-color: #202123;
+        }
+
+        button:disabled {
+            background-color: #494A54;
+            color: #2F303A;
+        }
+
+        button:disabled:hover {
+            border: 1px solid #494A54 !important;
+            background-color: #343541 !important;
+            color: #2F303A !important;
+        }
+
+        #heads {
+            color: white;
+            font-family: "Soehne Halbfett";
+            font-size: 24px;
+            margin: 5px;
+        }
+
+        #inputs {
+            background-color: #343541;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .message {
+            font-size: 16px;
+            align-items: center;
+            text-align: left;
+            color: white;
+            margin-left: 200px;
+        }
+
+        .label {
+            margin-bottom: 0;
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="chat-container">
+        <img src="polyintrologo.png" width="75" height="75" style="margin-top: 125px; margin-bottom: 0;">
+        <p id="heads">How can I help you today?</p>
+    </div>
+    <div id="inputs">
+        <div id="input-container">
+            <textarea id="textarea" placeholder="Message PolyChat..." rows="1"></textarea>
+            <button id="send" onclick="sendMessage()" disabled style="align-self: flex-end;">
+                <svg style="opacity: 100%;" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    class="text-white dark:text-black">
+                    <path
+                        d="M7 11L12 6L17 11M12 18V7"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <p id="warning">PolyChat can make mistakes. Consider checking important information.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
