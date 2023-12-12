@@ -30,19 +30,7 @@ function handleKeyPress(event) {
     sendMessage();
   }
 }
-const updateChatContainerHeight = () => {
-  const inputsDiv = document.getElementById("inputs");
-  const inputsHeight = inputsDiv.offsetHeight;
-  const newMaxHeight = window.innerHeight - inputsHeight;
-  chatContainer.style.maxHeight = `${newMaxHeight}px`;
-};
 
-textarea.oninput = function () {
-  textarea.style.height = "";
-  textarea.style.height = textarea.scrollHeight + "px";
-  document.getElementById("send").disabled = textarea.value == '';
-  updateChatContainerHeight();
-};
 textarea.addEventListener('keydown', handleKeyPress);
 
 const chat = async (msg) => {
@@ -81,12 +69,25 @@ const chat = async (msg) => {
     `;
 
     // Replace the initial "PolyChat" message with the actual AI response
-    initialPolyChatMessage.outerHTML = responseHtml;
+    initialPolyChatMessage.outerHTML =responseHtml;
     document.getElementById("send").disabled = true;
   } catch (error) {
     console.error("Error in chat:", error);
   }
 };
+const updateChatContainerHeight = () => {
+    const inputsDiv = document.getElementById("inputs");
+    const inputsHeight = inputsDiv.offsetHeight;
+    const newMaxHeight = window.innerHeight - inputsHeight;
+    chatContainer.style.maxHeight = `${newMaxHeight}px`;
+  };
+  
+  textarea.oninput = function () {
+    textarea.style.height = "";
+    textarea.style.height = textarea.scrollHeight + "px";
+    document.getElementById("send").disabled = textarea.value == '';
+    updateChatContainerHeight();
+  };
 
 async function sendMessage() {
   const message = textarea.value;
