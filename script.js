@@ -30,7 +30,19 @@ function handleKeyPress(event) {
     sendMessage();
   }
 }
+const updateChatContainerHeight = () => {
+  const inputsDiv = document.getElementById("inputs");
+  const inputsHeight = inputsDiv.offsetHeight;
+  const newMaxHeight = window.innerHeight - inputsHeight;
+  chatContainer.style.maxHeight = `${newMaxHeight}px`;
+};
 
+textarea.oninput = function () {
+  textarea.style.height = "";
+  textarea.style.height = textarea.scrollHeight + "px";
+  document.getElementById("send").disabled = textarea.value == '';
+  updateChatContainerHeight();
+};
 textarea.addEventListener('keydown', handleKeyPress);
 
 const chat = async (msg) => {
